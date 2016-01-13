@@ -12,6 +12,8 @@
 		122BD87C1C44311C00CED1C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 122BD87A1C44311C00CED1C8 /* Main.storyboard */; };
 		122BD87E1C44311C00CED1C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 122BD87D1C44311C00CED1C8 /* Assets.xcassets */; };
 		122BD8811C44311C00CED1C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 122BD87F1C44311C00CED1C8 /* LaunchScreen.storyboard */; };
+		129C75191C46D0C90002382E /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129C75181C46D0C90002382E /* WeatherCell.swift */; };
+		129C751B1C46D2100002382E /* futureWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129C751A1C46D2100002382E /* futureWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		122BD87D1C44311C00CED1C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		122BD8801C44311C00CED1C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		122BD8821C44311C00CED1C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		129C75181C46D0C90002382E /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		129C751A1C46D2100002382E /* futureWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = futureWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +42,7 @@
 		122BD86A1C44311C00CED1C8 = {
 			isa = PBXGroup;
 			children = (
-				122BD8751C44311C00CED1C8 /* UltraWeather */,
+				129C75101C46CA3E0002382E /* New Group */,
 				122BD8741C44311C00CED1C8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,14 +58,48 @@
 		122BD8751C44311C00CED1C8 /* UltraWeather */ = {
 			isa = PBXGroup;
 			children = (
+				129C75131C46CA650002382E /* View */,
+				129C75121C46CA5F0002382E /* Controller */,
+				129C75111C46CA500002382E /* Model */,
 				122BD8761C44311C00CED1C8 /* AppDelegate.swift */,
-				122BD8781C44311C00CED1C8 /* ViewController.swift */,
 				122BD87A1C44311C00CED1C8 /* Main.storyboard */,
 				122BD87D1C44311C00CED1C8 /* Assets.xcassets */,
 				122BD87F1C44311C00CED1C8 /* LaunchScreen.storyboard */,
 				122BD8821C44311C00CED1C8 /* Info.plist */,
 			);
 			path = UltraWeather;
+			sourceTree = "<group>";
+		};
+		129C75101C46CA3E0002382E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				122BD8751C44311C00CED1C8 /* UltraWeather */,
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
+		129C75111C46CA500002382E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				129C751A1C46D2100002382E /* futureWeather.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		129C75121C46CA5F0002382E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				122BD8781C44311C00CED1C8 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		129C75131C46CA650002382E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				129C75181C46D0C90002382E /* WeatherCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +174,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				122BD8791C44311C00CED1C8 /* ViewController.swift in Sources */,
+				129C751B1C46D2100002382E /* futureWeather.swift in Sources */,
 				122BD8771C44311C00CED1C8 /* AppDelegate.swift in Sources */,
+				129C75191C46D0C90002382E /* WeatherCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +326,7 @@
 				122BD8871C44311C00CED1C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
