@@ -32,6 +32,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let locationManager = CLLocationManager()
     
+    let emptyCellWeather = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
+    
+    var didDownloadWeatherData = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherTableView.delegate = self
@@ -39,20 +43,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
-        
-        self.locationManager.startUpdatingLocation()
-        //configure weather broadcast to empty string before downloading JSON data from API
-        let w1 = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
-        let w2 = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
-        let w3 = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
-        let w4 = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
-        let w5 = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
-        futureWeatherSet.append(w1)
-        futureWeatherSet.append(w2)
-        futureWeatherSet.append(w3)
-        futureWeatherSet.append(w4)
-        futureWeatherSet.append(w5)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+       self.locationManager.startUpdatingLocation()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        didDownloadWeatherData = false
+    }
+    
     //CLLocationManager delegate methods
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler:
@@ -82,10 +82,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.CurrentWindLbl.text = currWeather.wind
         self.CurrentSunriseLbl.text = currWeather.sunrise
         self.CurrentSunsetLbl.text = currWeather.sunset
+        if currWeather.sevenDays.count == 7{
+            didDownloadWeatherData = true
+        }
+        weatherTableView.reloadData()
+        print("update")
     }
-    
-    
-    
     
     //tableview delegate methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -93,23 +95,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let weather = futureWeatherSet[indexPath.row]
-        if let cell = weatherTableView.dequeueReusableCellWithIdentifier("WeatherCell") as? WeatherCell{
-            cell.configureCell(weather)
-            return cell
-        }else{
-            let cell = WeatherCell()
-            cell.configureCell(weather)
-            return cell
-
+        if !didDownloadWeatherData{
+            if let cell = weatherTableView.dequeueReusableCellWithIdentifier("WeatherCell") as? WeatherCell{
+                cell.configureCell(emptyCellWeather)
+                return cell
+            }else{
+                let cell = WeatherCell()
+                cell.configureCell(emptyCellWeather)
+                return cell
+                
+            }
+        }
+        
+        else{
+            let weather = currWeather.sevenDays[indexPath.row]
+            if let cell = weatherTableView.dequeueReusableCellWithIdentifier("WeatherCell") as? WeatherCell{
+                cell.configureCell(weather)
+                return cell
+            }else{
+                let cell = WeatherCell()
+                cell.configureCell(weather)
+                return cell
+                
+            }
         }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 7
     }
-
-
-
 }
 

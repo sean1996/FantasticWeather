@@ -12,7 +12,8 @@ class WeatherCell: UITableViewCell {
     
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var weatherImg: UIImageView!
-    @IBOutlet weak var tempLal: UILabel!
+    @IBOutlet weak var MinTempLbl: UILabel!
+    @IBOutlet weak var MaxTempLbl: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,8 +21,11 @@ class WeatherCell: UITableViewCell {
     
     func configureCell(weather: futureWeather){
         self.dateLbl.text = weather.date
-        self.weatherImg.image = UIImage(named: "\(weather.weatherIconNumber).png")
-        self.tempLal.text = weather.tempMax
+        self.weatherImg.image = UIImage(named: weather.weatherIconNumber)
+        self.MinTempLbl.text = weather.tempMin
+        self.MaxTempLbl.text = weather.tempMax
+
+        
     }
 
 

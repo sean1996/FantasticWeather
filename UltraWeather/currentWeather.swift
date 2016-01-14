@@ -19,7 +19,7 @@ class currentWeather: NSObject{
     private var _wind: String
     private var _longitude: Double
     private var _latitude: Double
-    private var _sevenDays:[futureWeather]
+    private var _sevenDays : [futureWeather]!
     
     var location: String{
         return _location
@@ -104,8 +104,7 @@ class currentWeather: NSObject{
                     self._sunset = self.HourtimeFromUnixunixTime(sunsettime)
                     
                 }
-                let futureUrlStr = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(self._latitude)&lon=\(self._longitude)&cnt=5&APPID=4b087e9e65108afa86ad3938b390e8f7"
-                print(futureUrlStr)
+                let futureUrlStr = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(self._latitude)&lon=\(self._longitude)&cnt=7&APPID=4b087e9e65108afa86ad3938b390e8f7"
                 let futureUrl = NSURL(string: futureUrlStr)!
                 Alamofire.request(.GET, futureUrl).responseJSON{ response in
                     let futureResult = response.result
@@ -132,12 +131,13 @@ class currentWeather: NSObject{
                                 if let unixTime = dayDict["dt"] as? Double{
                                     dateString = self.DatetimeFromUnixunixTime(unixTime)
                                 }
-                                self._sevenDays.append(futureWeather(date: dateString, weatherIconNumber: futureWeatherIcon, tempMax: tempMax, tempMin: tempMin))
+                                let oneFutureWeatherDay = futureWeather(date: dateString, weatherIconNumber: futureWeatherIcon, tempMax: tempMax, tempMin: tempMin)
+                                self._sevenDays.append(oneFutureWeatherDay)
                             }
                         }
                     }
+                    completed()
                 }
-                completed()
             }
         }
     }

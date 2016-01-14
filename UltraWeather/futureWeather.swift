@@ -36,5 +36,11 @@ class futureWeather: NSObject{
         _tempMax = tempMax
         _tempMin = tempMin
     }
+    func printInfo(){
+        print(_date)
+        print(_weatherIconNumber)
+        print(_tempMax)
+        print(_tempMin)
+    }
     
 }
