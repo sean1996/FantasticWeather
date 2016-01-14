@@ -21,7 +21,7 @@ class WeatherCell: UITableViewCell {
     func configureCell(weather: futureWeather){
         self.dateLbl.text = weather.date
         self.weatherImg.image = UIImage(named: "\(weather.weatherIconNumber).png")
-        self.tempLal.text = weather.temp
+        self.tempLal.text = weather.tempMax
     }
 
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class currentWeather: NSObject{
     private var _location: String
@@ -16,8 +17,9 @@ class currentWeather: NSObject{
     private var _sunrise: String
     private var _humid: String
     private var _wind: String
-    private var _longitude: Double!
-    private var _latitude: Double!
+    private var _longitude: Double
+    private var _latitude: Double
+    private var _sevenDays:[futureWeather]
     
     var location: String{
         return _location
@@ -55,6 +57,10 @@ class currentWeather: NSObject{
         return _latitude
     }
     
+    var sevenDays: [futureWeather]{
+        return _sevenDays
+    }
+    
     
     
     init(latitude: Double, longitude:Double, location: String) {
@@ -67,6 +73,87 @@ class currentWeather: NSObject{
         _location = location
         _latitude = latitude
         _longitude = longitude
+        _sevenDays = [futureWeather]()
     }
     
+    func downLoadCurrentWeatherInfo(completed: DownloadComplete){
+        let urlStr = "http://api.openweathermap.org/data/2.5/weather?lat=\(_latitude)&lon=\(_longitude)&APPID=4b087e9e65108afa86ad3938b390e8f7"
+        let url = NSURL(string: urlStr)!
+        Alamofire.request(.GET, url).responseJSON{ response in
+            let result = response.result
+            print(result.debugDescription)
+            if let dict = result.value as? Dictionary<String, AnyObject>{
+                if let weatherDict = dict["weather"] as? [Dictionary<String, AnyObject>] {
+                    self._weatherIconNumber = weatherDict[0]["icon"] as! String
+                    self._weatherIconNumber += "-white.png"
+                }
+                if let main = dict["main"] as? Dictionary<String, AnyObject>{
+                    var temperature = main["temp"] as! Int
+                    temperature -= 273
+                    self._temp = "\(temperature) °C"
+                    self._humid = "\(main["humidity"]!)%"
+                }
+                if let wind = dict["wind"] as? Dictionary<String, AnyObject>{
+                    self._wind = "\(wind["speed"]!)m/s"
+                }
+                if let sys = dict["sys"] as? Dictionary<String, AnyObject>{
+                    let sunsettime = sys["sunset"] as! Double
+                    let sunrisetime = sys["sunrise"] as! Double
+                    
+                    self._sunrise = self.HourtimeFromUnixunixTime(sunrisetime)
+                    self._sunset = self.HourtimeFromUnixunixTime(sunsettime)
+                    
+                }
+                let futureUrlStr = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(self._latitude)&lon=\(self._longitude)&cnt=5&APPID=4b087e9e65108afa86ad3938b390e8f7"
+                print(futureUrlStr)
+                let futureUrl = NSURL(string: futureUrlStr)!
+                Alamofire.request(.GET, futureUrl).responseJSON{ response in
+                    let futureResult = response.result
+                    if let futureDict = futureResult.value as? Dictionary<String, AnyObject>{
+                        if let futureWeatherList = futureDict["list"] as? [Dictionary<String, AnyObject>]{
+                            for dayDict in futureWeatherList{
+                                var tempMax: String!
+                                var tempMin: String!
+                                if let tempDict = dayDict["temp"] as? Dictionary<String, AnyObject>{
+                                    var tempMaxNum = tempDict["max"] as! Int
+                                    tempMaxNum = tempMaxNum - 273
+                                    tempMax = "\(tempMaxNum)"
+                                    
+                                    var tempMinNum = tempDict["min"] as! Int
+                                    tempMinNum = tempMinNum - 273
+                                    tempMin = "\(tempMinNum)"
+                                }
+                                var futureWeatherIcon: String!
+                                if let iconDict = dayDict["weather"] as? [Dictionary<String, AnyObject>]{
+                                    futureWeatherIcon = iconDict[0]["icon"] as! String
+                                    futureWeatherIcon = futureWeatherIcon + ".png"
+                                }
+                                var dateString: String!
+                                if let unixTime = dayDict["dt"] as? Double{
+                                    dateString = self.DatetimeFromUnixunixTime(unixTime)
+                                }
+                                self._sevenDays.append(futureWeather(date: dateString, weatherIconNumber: futureWeatherIcon, tempMax: tempMax, tempMin: tempMin))
+                            }
+                        }
+                    }
+                }
+                completed()
+            }
+        }
+    }
+    
+    func HourtimeFromUnixunixTime (unixTime: Double) -> String {
+        let date = NSDate(timeIntervalSince1970: unixTime)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    func DatetimeFromUnixunixTime (unixTime: Double) -> String {
+        let date = NSDate(timeIntervalSince1970: unixTime)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM dd"
+        return dateFormatter.stringFromDate(date)
+    }
+
 }

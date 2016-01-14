@@ -16,6 +16,7 @@
 		124E650C1C46F61400D2AEA3 /* currentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124E650B1C46F61400D2AEA3 /* currentWeather.swift */; };
 		129C75191C46D0C90002382E /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129C75181C46D0C90002382E /* WeatherCell.swift */; };
 		129C751B1C46D2100002382E /* futureWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129C751A1C46D2100002382E /* futureWeather.swift */; };
+		12BA70881C4760BA005FD5A1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA70871C4760BA005FD5A1 /* Constants.swift */; };
 		A6E87A9ACF44F0F6BA964300 /* Pods_UltraWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E8C8A3D07B2E7A3CE8D6C0 /* Pods_UltraWeather.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		124E650B1C46F61400D2AEA3 /* currentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = currentWeather.swift; sourceTree = "<group>"; };
 		129C75181C46D0C90002382E /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		129C751A1C46D2100002382E /* futureWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = futureWeather.swift; sourceTree = "<group>"; };
+		12BA70871C4760BA005FD5A1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		42FF92ED977E01EB6137AD10 /* Pods-UltraWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UltraWeather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UltraWeather/Pods-UltraWeather.debug.xcconfig"; sourceTree = "<group>"; };
 		98E8C8A3D07B2E7A3CE8D6C0 /* Pods_UltraWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UltraWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 			children = (
 				129C751A1C46D2100002382E /* futureWeather.swift */,
 				124E650B1C46F61400D2AEA3 /* currentWeather.swift */,
+				12BA70871C4760BA005FD5A1 /* Constants.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				124E650A1C46E47B00D2AEA3 /* SearchVC.swift in Sources */,
 				129C751B1C46D2100002382E /* futureWeather.swift in Sources */,
 				122BD8771C44311C00CED1C8 /* AppDelegate.swift in Sources */,
+				12BA70881C4760BA005FD5A1 /* Constants.swift in Sources */,
 				124E650C1C46F61400D2AEA3 /* currentWeather.swift in Sources */,
 				129C75191C46D0C90002382E /* WeatherCell.swift in Sources */,
 			);

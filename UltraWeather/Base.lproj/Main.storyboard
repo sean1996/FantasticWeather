@@ -16,6 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="171-cx-LT8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ktB-Ze-v8m">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrT-CT-xdl">
@@ -42,7 +43,7 @@
                                     <action selector="BackPressed:" destination="lNP-MF-v11" eventType="touchUpInside" id="Onw-E1-WtC"/>
                                 </connections>
                             </button>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="HaC-By-gYi">
+                            <searchBar contentMode="redraw" placeholder="Add a City" translatesAutoresizingMaskIntoConstraints="NO" id="HaC-By-gYi">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="EvP-5U-67b"/>
@@ -67,6 +68,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XjB-Ma-rOC" id="y7v-qh-buz">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -96,6 +98,7 @@
                                 <exclude reference="gf2-pD-8zs"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="qHz-yZ-3pG"/>
                                 <exclude reference="Dk7-9c-52Y"/>
                                 <exclude reference="YG3-ZO-f8R"/>
                                 <exclude reference="RmN-SL-DQC"/>
@@ -104,7 +107,6 @@
                                 <exclude reference="aUT-bT-ge0"/>
                                 <exclude reference="oLZ-Er-vwB"/>
                                 <exclude reference="rkW-GC-E17"/>
-                                <exclude reference="qHz-yZ-3pG"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -114,6 +116,7 @@
                                 <include reference="gf2-pD-8zs"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="qHz-yZ-3pG"/>
                                 <include reference="Dk7-9c-52Y"/>
                                 <include reference="YG3-ZO-f8R"/>
                                 <include reference="RmN-SL-DQC"/>
@@ -122,7 +125,6 @@
                                 <include reference="aUT-bT-ge0"/>
                                 <include reference="oLZ-Er-vwB"/>
                                 <include reference="rkW-GC-E17"/>
-                                <include reference="qHz-yZ-3pG"/>
                             </mask>
                         </variation>
                     </view>
@@ -152,7 +154,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nUM-RO-4vU" id="gAH-fz-A1H">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="56.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Jan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCn-Ae-QWt">
@@ -317,11 +319,21 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="75%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mc4-OA-h4q">
                                                 <rect key="frame" x="108" y="22" width="80" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="85" id="l3V-w9-Lk8"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular" ambiguous="YES">
-                                                    <rect key="frame" x="65" y="0.0" width="39" height="45"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="l3V-w9-Lk8"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular">
+                                                    <mask key="constraints">
+                                                        <include reference="l3V-w9-Lk8"/>
+                                                    </mask>
                                                 </variation>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="z2j-tx-iLf">
@@ -340,28 +352,24 @@
                                                         <exclude reference="WYR-Ul-Lbj"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular" ambiguous="YES">
-                                                    <rect key="frame" x="124" y="0.0" width="45" height="45"/>
+                                                <variation key="heightClass=regular">
                                                     <mask key="constraints">
                                                         <include reference="JvD-RY-ZmI"/>
                                                         <include reference="WYR-Ul-Lbj"/>
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7m/s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRN-IR-gux">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27m/s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="lRN-IR-gux">
                                                 <rect key="frame" x="393" y="20" width="79" height="70"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular" ambiguous="YES">
-                                                    <rect key="frame" x="189" y="0.0" width="91" height="45"/>
-                                                </variation>
                                             </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="CJQ-7O-8a9"/>
                                             <constraint firstAttribute="width" constant="232" id="MSw-J9-od7">
-                                                <variation key="heightClass=regular" constant="280"/>
+                                                <variation key="heightClass=regular" constant="290"/>
                                             </constraint>
                                         </constraints>
                                         <variation key="default">
@@ -441,11 +449,21 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dt-GT-aDP">
                                                 <rect key="frame" x="98" y="20" width="80" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="85" id="1Lu-xb-Jad"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="65" y="0.0" width="36" height="45"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="1Lu-xb-Jad"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular">
+                                                    <mask key="constraints">
+                                                        <include reference="1Lu-xb-Jad"/>
+                                                    </mask>
                                                 </variation>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunset2" translatesAutoresizingMaskIntoConstraints="NO" id="6ee-EB-DO6">
@@ -464,8 +482,7 @@
                                                         <exclude reference="heG-2m-wWV"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="121" y="0.0" width="45" height="45"/>
+                                                <variation key="heightClass=regular">
                                                     <mask key="constraints">
                                                         <include reference="Nii-aG-E27"/>
                                                         <include reference="heG-2m-wWV"/>
@@ -477,14 +494,11 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="186" y="0.0" width="94" height="45"/>
-                                                </variation>
                                             </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="260" id="vUl-r2-2Tc">
-                                                <variation key="heightClass=regular" constant="280"/>
+                                                <variation key="heightClass=regular" constant="290"/>
                                             </constraint>
                                             <constraint firstAttribute="height" constant="70" id="zzX-4c-8ge">
                                                 <variation key="heightClass=regular" constant="45"/>
@@ -516,7 +530,8 @@
                                                 <exclude reference="XXh-5D-cel"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular">
+                                        <variation key="heightClass=regular" misplaced="YES">
+                                            <rect key="frame" x="175" y="189" width="251" height="75"/>
                                             <mask key="constraints">
                                                 <include reference="XXh-5D-cel"/>
                                             </mask>
@@ -560,12 +575,12 @@
                                         <exclude reference="bI1-SR-KGP"/>
                                         <exclude reference="mSf-Ky-CtW"/>
                                         <exclude reference="py4-VL-fDz"/>
+                                        <exclude reference="GHb-KK-gGm"/>
+                                        <exclude reference="jXK-lL-eZl"/>
                                         <exclude reference="Ogm-fl-N4P"/>
                                         <exclude reference="dGN-EP-qPd"/>
                                         <exclude reference="GA7-TM-Ljm"/>
                                         <exclude reference="Gh1-Py-QPt"/>
-                                        <exclude reference="GHb-KK-gGm"/>
-                                        <exclude reference="jXK-lL-eZl"/>
                                         <exclude reference="B93-03-pm4"/>
                                         <exclude reference="gJs-mS-UNn"/>
                                         <exclude reference="ZhM-ej-C6I"/>
@@ -585,12 +600,12 @@
                                         <exclude reference="bI1-SR-KGP"/>
                                         <include reference="mSf-Ky-CtW"/>
                                         <exclude reference="py4-VL-fDz"/>
+                                        <include reference="GHb-KK-gGm"/>
+                                        <include reference="jXK-lL-eZl"/>
                                         <include reference="Ogm-fl-N4P"/>
                                         <include reference="dGN-EP-qPd"/>
                                         <include reference="GA7-TM-Ljm"/>
                                         <include reference="Gh1-Py-QPt"/>
-                                        <include reference="GHb-KK-gGm"/>
-                                        <include reference="jXK-lL-eZl"/>
                                         <include reference="B93-03-pm4"/>
                                         <include reference="gJs-mS-UNn"/>
                                         <include reference="ZhM-ej-C6I"/>
@@ -661,7 +676,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e36-Jm-u2Y" id="6UP-aB-IeM">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="56.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Jan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3L-ZX-jYK">
@@ -823,7 +838,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular" ambiguous="YES">
-                                                <rect key="frame" x="65" y="0.0" width="87" height="45"/>
+                                                <rect key="frame" x="65" y="0.0" width="39" height="45"/>
                                             </variation>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-Zh-UDj">
@@ -843,7 +858,7 @@
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular" ambiguous="YES">
-                                                <rect key="frame" x="172" y="0.0" width="45" height="45"/>
+                                                <rect key="frame" x="124" y="0.0" width="45" height="45"/>
                                                 <mask key="constraints">
                                                     <include reference="1Ud-3v-ZgK"/>
                                                     <include reference="vbx-St-CIW"/>
@@ -856,7 +871,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular" ambiguous="YES">
-                                                <rect key="frame" x="237" y="0.0" width="43" height="45"/>
+                                                <rect key="frame" x="189" y="0.0" width="92" height="45"/>
                                             </variation>
                                         </label>
                                     </subviews>
@@ -947,7 +962,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                                <rect key="frame" x="65" y="0.0" width="36" height="45"/>
+                                                <rect key="frame" x="65" y="0.0" width="85" height="45"/>
                                             </variation>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunset2" translatesAutoresizingMaskIntoConstraints="NO" id="lFw-Ym-ZHX">
@@ -967,7 +982,7 @@
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                                <rect key="frame" x="121" y="0.0" width="45" height="45"/>
+                                                <rect key="frame" x="170" y="0.0" width="45" height="45"/>
                                                 <mask key="constraints">
                                                     <include reference="39A-7O-Ppi"/>
                                                     <include reference="Qny-15-Y7e"/>
@@ -980,7 +995,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                                <rect key="frame" x="186" y="0.0" width="94" height="45"/>
+                                                <rect key="frame" x="235" y="0.0" width="46" height="45"/>
                                             </variation>
                                         </label>
                                     </subviews>

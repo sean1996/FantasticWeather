@@ -11,7 +11,8 @@ import Foundation
 class futureWeather: NSObject{
     private var _date: String!
     private var _weatherIconNumber: String!
-    private var _temp: String!
+    private var _tempMax: String!
+    private var _tempMin: String!
     
     var date: String{
         return _date
@@ -21,14 +22,19 @@ class futureWeather: NSObject{
         return _weatherIconNumber
     }
     
-    var temp: String{
-        return _temp
+    var tempMax: String{
+        return _tempMax
     }
     
-    init(date:String, weatherIconNumber: String, temp: String) {
+    var tempMin: String{
+        return _tempMin
+    }
+    
+    init(date:String, weatherIconNumber: String, tempMax: String, tempMin: String) {
         _date = date
         _weatherIconNumber = weatherIconNumber
-        _temp = temp
+        _tempMax = tempMax
+        _tempMin = tempMin
     }
     
 }

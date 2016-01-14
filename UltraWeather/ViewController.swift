@@ -38,16 +38,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         weatherTableView.dataSource = self
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        if CLLocationManager.authorizationStatus() != .AuthorizedWhenInUse{
-            self.locationManager.requestWhenInUseAuthorization()
-        }
-        self.locationManager.startUpdatingLocation()
+        self.locationManager.requestWhenInUseAuthorization()
         
-        let w1 = futureWeather(date: "Jan 01", weatherIconNumber: "01n",temp: "32C")
-        let w2 = futureWeather(date: "Jan 02", weatherIconNumber: "01n",temp: "32C")
-        let w3 = futureWeather(date: "Jan 03", weatherIconNumber: "01n",temp: "32C")
-        let w4 = futureWeather(date: "Jan 04", weatherIconNumber: "01n",temp: "32C")
-        let w5 = futureWeather(date: "Jan 05", weatherIconNumber: "01n",temp: "32C")
+        self.locationManager.startUpdatingLocation()
+        //configure weather broadcast to empty string before downloading JSON data from API
+        let w1 = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
+        let w2 = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
+        let w3 = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
+        let w4 = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
+        let w5 = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
         futureWeatherSet.append(w1)
         futureWeatherSet.append(w2)
         futureWeatherSet.append(w3)
@@ -65,15 +64,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
-    
+    //download weather json info and update UI
     func updateWeatherInfo(placemark: CLPlacemark){
         self.locationManager.stopUpdatingLocation()
         currWeather = currentWeather(latitude: placemark.location!.coordinate.latitude, longitude: placemark.location!.coordinate.longitude, location: "\(placemark.locality!), \(placemark.administrativeArea!)")
-        print(currWeather.location)
-        print(currWeather.latitude)
-        print(currWeather.longitude)
-        
+        currWeather.downLoadCurrentWeatherInfo(){ () -> () in
+            //this will be called after download is done
+            self.updateUI()
+        }
     }
+    
+    func updateUI(){
+        self.LocationLbl.text = currWeather.location
+        self.CurrentWeatherImg.image = UIImage(named: currWeather.weatherIconNumber)
+        self.CurrentTempLbl.text = currWeather.temp
+        self.CurrentHumidLbl.text = currWeather.humid
+        self.CurrentWindLbl.text = currWeather.wind
+        self.CurrentSunriseLbl.text = currWeather.sunrise
+        self.CurrentSunsetLbl.text = currWeather.sunset
+    }
+    
+    
     
     
     //tableview delegate methods
