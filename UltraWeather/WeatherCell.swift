@@ -19,14 +19,19 @@ class WeatherCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func configureCell(weather: futureWeather){
+    func configureCell(weather: futureWeather, DisPlayInCelcuis: Bool){
         self.dateLbl.text = weather.date
         self.weatherImg.image = UIImage(named: weather.weatherIconNumber)
-        self.MinTempLbl.text = weather.tempMin
-        self.MaxTempLbl.text = weather.tempMax
-
-        
+        if DisPlayInCelcuis{
+            self.MinTempLbl.text = weather.tempMin
+            self.MaxTempLbl.text = weather.tempMax
+        }
+        else{
+            let minTempCelcuis = Double(weather.tempMin)
+            let maxTempCelcuis = Double(weather.tempMax)
+            //display weather in farenheit
+            self.MinTempLbl.text = "\(Int(minTempCelcuis! * 1.8 + 32))"
+            self.MaxTempLbl.text = "\(Int(maxTempCelcuis! * 1.8 + 32))"
+        }
     }
-
-
 }

@@ -8,7 +8,9 @@
 
 import UIKit
 import CoreLocation
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate  {
+import GoogleMaps
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, GMSAutocompleteViewControllerDelegate  {
 
     @IBOutlet weak var weatherTableView:UITableView!
     
@@ -26,13 +28,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var CurrentWindLbl: UILabel!
     
+    
+    var disPlayInCelcuis = true
+    
     var futureWeatherSet = [futureWeather]()
     
     var currWeather : currentWeather!
     
     let locationManager = CLLocationManager()
     
-    let emptyCellWeather = futureWeather(date: "", weatherIconNumber: "",tempMax: "", tempMin:"")
+    let emptyCellWeather = futureWeather(date: "", weatherIconNumber: "",tempMax: "0", tempMin:"0")
     
     var didDownloadWeatherData = false
     
@@ -46,10 +51,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewDidAppear(animated: Bool) {
-       self.locationManager.startUpdatingLocation()
+        if (currWeather != nil){
+            currWeather.downLoadCurrentWeatherInfo(){ () -> () in
+                //this will be called after download is done
+                self.updateUI()
+            }
+        }
+        else{
+             self.locationManager.startUpdatingLocation()
+        }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewWillDisappear(animated: Bool) {
         didDownloadWeatherData = false
     }
     
@@ -72,12 +85,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //this will be called after download is done
             self.updateUI()
         }
+
     }
     
     func updateUI(){
         self.LocationLbl.text = currWeather.location
         self.CurrentWeatherImg.image = UIImage(named: currWeather.weatherIconNumber)
-        self.CurrentTempLbl.text = currWeather.temp
+        if(disPlayInCelcuis){
+           self.CurrentTempLbl.text = currWeather.temp + " °C"
+        }
+        else{
+            let currentTempInCelcuis = Double(currWeather.temp)
+            self.CurrentTempLbl.text = "\(Int(currentTempInCelcuis! * 1.8 + 32)) °F"
+        }
         self.CurrentHumidLbl.text = currWeather.humid
         self.CurrentWindLbl.text = currWeather.wind
         self.CurrentSunriseLbl.text = currWeather.sunrise
@@ -86,7 +106,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             didDownloadWeatherData = true
         }
         weatherTableView.reloadData()
-        print("update")
     }
     
     //tableview delegate methods
@@ -97,11 +116,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if !didDownloadWeatherData{
             if let cell = weatherTableView.dequeueReusableCellWithIdentifier("WeatherCell") as? WeatherCell{
-                cell.configureCell(emptyCellWeather)
+                cell.configureCell(emptyCellWeather, DisPlayInCelcuis:disPlayInCelcuis)
                 return cell
             }else{
                 let cell = WeatherCell()
-                cell.configureCell(emptyCellWeather)
+                cell.configureCell(emptyCellWeather, DisPlayInCelcuis:disPlayInCelcuis)
                 return cell
                 
             }
@@ -110,11 +129,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         else{
             let weather = currWeather.sevenDays[indexPath.row]
             if let cell = weatherTableView.dequeueReusableCellWithIdentifier("WeatherCell") as? WeatherCell{
-                cell.configureCell(weather)
+                cell.configureCell(weather, DisPlayInCelcuis:disPlayInCelcuis)
                 return cell
             }else{
                 let cell = WeatherCell()
-                cell.configureCell(weather)
+                cell.configureCell(weather, DisPlayInCelcuis:disPlayInCelcuis)
                 return cell
                 
             }
@@ -124,5 +143,88 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
     }
+    
+    //Three IBActions in the view controller implemented here
+    @IBAction func addCityBtnPressed(sender: AnyObject) {
+        if (currWeather == nil){
+            currWeather = currentWeather(latitude: 0, longitude: 0, location: "Search your city manuallly")
+        }
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        self.presentViewController(autocompleteController, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func refreshButPressed(sender: AnyObject) {
+        if (currWeather != nil){
+            currWeather.downLoadCurrentWeatherInfo(){ () -> () in
+                //this will be called after download is done
+                self.updateUI()
+            }
+        }
+        else{
+            self.locationManager.startUpdatingLocation()
+        }
+    }
+    
+    @IBAction func ChangeUnit(sender: UIButton) {
+        if disPlayInCelcuis{
+            disPlayInCelcuis = false
+            weatherTableView.reloadData()
+            //display the current temperature temp in farenheit
+            if(currWeather != nil){
+                let currentTempInCelcuis = Double(currWeather.temp)
+                self.CurrentTempLbl.text = "\(Int(currentTempInCelcuis! * 1.8 + 32)) °F"
+            }
+            
+        }else{
+            disPlayInCelcuis = true
+            weatherTableView.reloadData()
+            //display the current temperature temp in celcuis
+            if(currWeather != nil) {
+                self.CurrentTempLbl.text = "\(currWeather.temp) °C"
+            }
+        }
+    }
+    
+    
+    
+    //Googleplaces API controller delegates
+    func viewController(viewController: GMSAutocompleteViewController!, didAutocompleteWithPlace place: GMSPlace!) {
+        let  latitudeOfSelectedPlace = place.coordinate.latitude
+        let  longitudeOfSelectedPlace = place.coordinate.longitude
+        print("latitude:",latitudeOfSelectedPlace)
+        print("longtitude:",longitudeOfSelectedPlace)
+        let  clLocation = CLLocation(latitude: latitudeOfSelectedPlace, longitude: longitudeOfSelectedPlace)
+        CLGeocoder().reverseGeocodeLocation(clLocation, completionHandler:
+            { (placemarks, error) -> Void in
+                if placemarks!.count > 0{
+                    let pm = placemarks![0]
+                    if pm.locality == nil{
+                        self.currWeather.setLocation("\(pm.administrativeArea!), \(pm.country!)")
+                    }else if pm.locality == pm.administrativeArea{  //case for Beijing, Beijing, Shanghai, Shanghai
+                        self.currWeather.setLocation("\(pm.administrativeArea!), \(pm.country!)")
+                    }else{
+                        self.currWeather.setLocation("\(pm.locality!), \(pm.administrativeArea!)")
+                    }
+                }
+        })
+        currWeather.set_Latitude(latitudeOfSelectedPlace)
+        currWeather.set_Longitude(longitudeOfSelectedPlace)
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    func viewController(viewController: GMSAutocompleteViewController!, didFailAutocompleteWithError error: NSError!) {
+        print("err!")
+        print("Error: ", error.description)
+    }
+    
+    func wasCancelled(viewController: GMSAutocompleteViewController!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
+
+
 

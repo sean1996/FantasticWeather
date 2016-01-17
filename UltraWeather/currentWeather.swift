@@ -50,7 +50,7 @@ class currentWeather: NSObject{
     }
     
     var longitude: Double {
-        return _longitude
+       return _longitude
     }
     
     var latitude: Double {
@@ -61,6 +61,17 @@ class currentWeather: NSObject{
         return _sevenDays
     }
     
+    func set_Longitude(lon: Double){
+        _longitude = lon
+    }
+    
+    func set_Latitude(lat: Double){
+        _latitude = lat
+    }
+    
+    func setLocation(loc: String){
+        _location = loc
+    }
     
     
     init(latitude: Double, longitude:Double, location: String) {
@@ -76,21 +87,30 @@ class currentWeather: NSObject{
         _sevenDays = [futureWeather]()
     }
     
+    func clearData(){
+        _weatherIconNumber = ""
+        _temp = ""
+        _sunset = ""
+        _sunrise = ""
+        _humid = ""
+        _wind = ""
+        _sevenDays.removeAll()
+    }
+    
     func downLoadCurrentWeatherInfo(completed: DownloadComplete){
-        let urlStr = "http://api.openweathermap.org/data/2.5/weather?lat=\(_latitude)&lon=\(_longitude)&APPID=4b087e9e65108afa86ad3938b390e8f7"
+        clearData()
+        let urlStr = "http://api.openweathermap.org/data/2.5/weather?lat=\(_latitude)&lon=\(_longitude)&units=metric&APPID=4b087e9e65108afa86ad3938b390e8f7"
         let url = NSURL(string: urlStr)!
         Alamofire.request(.GET, url).responseJSON{ response in
             let result = response.result
-            print(result.debugDescription)
             if let dict = result.value as? Dictionary<String, AnyObject>{
                 if let weatherDict = dict["weather"] as? [Dictionary<String, AnyObject>] {
                     self._weatherIconNumber = weatherDict[0]["icon"] as! String
                     self._weatherIconNumber += "-white.png"
                 }
                 if let main = dict["main"] as? Dictionary<String, AnyObject>{
-                    var temperature = main["temp"] as! Int
-                    temperature -= 273
-                    self._temp = "\(temperature) °C"
+                    let temperature = main["temp"] as! Int
+                    self._temp = "\(temperature)"
                     self._humid = "\(main["humidity"]!)%"
                 }
                 if let wind = dict["wind"] as? Dictionary<String, AnyObject>{
@@ -104,7 +124,7 @@ class currentWeather: NSObject{
                     self._sunset = self.HourtimeFromUnixunixTime(sunsettime)
                     
                 }
-                let futureUrlStr = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(self._latitude)&lon=\(self._longitude)&cnt=7&APPID=4b087e9e65108afa86ad3938b390e8f7"
+                let futureUrlStr = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(self._latitude)&lon=\(self._longitude)&units=metric&cnt=7&APPID=4b087e9e65108afa86ad3938b390e8f7"
                 let futureUrl = NSURL(string: futureUrlStr)!
                 Alamofire.request(.GET, futureUrl).responseJSON{ response in
                     let futureResult = response.result
@@ -114,12 +134,10 @@ class currentWeather: NSObject{
                                 var tempMax: String!
                                 var tempMin: String!
                                 if let tempDict = dayDict["temp"] as? Dictionary<String, AnyObject>{
-                                    var tempMaxNum = tempDict["max"] as! Int
-                                    tempMaxNum = tempMaxNum - 273
+                                    let tempMaxNum = tempDict["max"] as! Int
                                     tempMax = "\(tempMaxNum)"
                                     
-                                    var tempMinNum = tempDict["min"] as! Int
-                                    tempMinNum = tempMinNum - 273
+                                    let tempMinNum = tempDict["min"] as! Int
                                     tempMin = "\(tempMinNum)"
                                 }
                                 var futureWeatherIcon: String!
@@ -152,7 +170,7 @@ class currentWeather: NSObject{
     func DatetimeFromUnixunixTime (unixTime: Double) -> String {
         let date = NSDate(timeIntervalSince1970: unixTime)
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MMM dd"
+        dateFormatter.dateFormat = "EE, MMM dd"
         return dateFormatter.stringFromDate(date)
     }
 
