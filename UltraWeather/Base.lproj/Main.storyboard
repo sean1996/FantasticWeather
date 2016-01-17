@@ -27,7 +27,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nUM-RO-4vU" id="gAH-fz-A1H">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="56.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Jan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCn-Ae-QWt">
@@ -660,7 +660,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e36-Jm-u2Y" id="6UP-aB-IeM">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="56.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Jan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3L-ZX-jYK">
@@ -822,7 +822,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                                <rect key="frame" x="65" y="0.0" width="39" height="45"/>
+                                                <rect key="frame" x="65" y="0.0" width="87" height="45"/>
                                             </variation>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-Zh-UDj">
@@ -842,7 +842,7 @@
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                                <rect key="frame" x="124" y="0.0" width="45" height="45"/>
+                                                <rect key="frame" x="172" y="0.0" width="45" height="45"/>
                                                 <mask key="constraints">
                                                     <include reference="1Ud-3v-ZgK"/>
                                                     <include reference="vbx-St-CIW"/>
@@ -855,7 +855,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                                <rect key="frame" x="189" y="0.0" width="91" height="45"/>
+                                                <rect key="frame" x="237" y="0.0" width="43" height="45"/>
                                             </variation>
                                         </label>
                                     </subviews>
@@ -945,7 +945,7 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular" ambiguous="YES">
+                                            <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
                                                 <rect key="frame" x="65" y="0.0" width="36" height="45"/>
                                             </variation>
                                         </label>
@@ -965,7 +965,7 @@
                                                     <exclude reference="Qny-15-Y7e"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular" ambiguous="YES">
+                                            <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
                                                 <rect key="frame" x="121" y="0.0" width="45" height="45"/>
                                                 <mask key="constraints">
                                                     <include reference="39A-7O-Ppi"/>
@@ -978,8 +978,8 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular" ambiguous="YES">
-                                                <rect key="frame" x="186" y="0.0" width="94" height="45"/>
+                                            <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
+                                                <rect key="frame" x="186" y="0.0" width="95" height="45"/>
                                             </variation>
                                         </label>
                                     </subviews>

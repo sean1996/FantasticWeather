@@ -51,15 +51,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewDidAppear(animated: Bool) {
-        if (currWeather != nil){
-            currWeather.downLoadCurrentWeatherInfo(){ () -> () in
-                //this will be called after download is done
-                self.updateUI()
-            }
-        }
-        else{
-             self.locationManager.startUpdatingLocation()
-        }
+//        if (currWeather != nil){
+//            currWeather.downLoadCurrentWeatherInfo(){ () -> () in
+//                //this will be called after download is done
+//                self.updateUI()
+//            }
+//        }
+//        else{
+//             self.locationManager.startUpdatingLocation()
+//        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -91,13 +91,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func updateUI(){
         self.LocationLbl.text = currWeather.location
         self.CurrentWeatherImg.image = UIImage(named: currWeather.weatherIconNumber)
-        if(disPlayInCelcuis){
-           self.CurrentTempLbl.text = currWeather.temp + " °C"
-        }
-        else{
-            let currentTempInCelcuis = Double(currWeather.temp)
-            self.CurrentTempLbl.text = "\(Int(currentTempInCelcuis! * 1.8 + 32)) °F"
-        }
+//        if(disPlayInCelcuis){
+//           self.CurrentTempLbl.text = currWeather.temp + " °C"
+//        }
+//        else{
+//            let currentTempInCelcuis = Double(currWeather.temp)
+//            self.CurrentTempLbl.text = "\(Int(currentTempInCelcuis! * 1.8 + 32)) °F"
+//        }
         self.CurrentHumidLbl.text = currWeather.humid
         self.CurrentWindLbl.text = currWeather.wind
         self.CurrentSunriseLbl.text = currWeather.sunrise
@@ -146,45 +146,45 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //Three IBActions in the view controller implemented here
     @IBAction func addCityBtnPressed(sender: AnyObject) {
-        if (currWeather == nil){
-            currWeather = currentWeather(latitude: 0, longitude: 0, location: "Search your city manuallly")
-        }
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        self.presentViewController(autocompleteController, animated: true, completion: nil)
+//        if (currWeather == nil){
+//            currWeather = currentWeather(latitude: 0, longitude: 0, location: "Search your city manuallly")
+//        }
+//        let autocompleteController = GMSAutocompleteViewController()
+//        autocompleteController.delegate = self
+//        self.presentViewController(autocompleteController, animated: true, completion: nil)
     }
     
     
     @IBAction func refreshButPressed(sender: AnyObject) {
-        if (currWeather != nil){
-            currWeather.downLoadCurrentWeatherInfo(){ () -> () in
-                //this will be called after download is done
-                self.updateUI()
-            }
-        }
-        else{
-            self.locationManager.startUpdatingLocation()
-        }
+//        if (currWeather != nil){
+//            currWeather.downLoadCurrentWeatherInfo(){ () -> () in
+//                //this will be called after download is done
+//                self.updateUI()
+//            }
+//        }
+//        else{
+//            self.locationManager.startUpdatingLocation()
+//        }
     }
     
     @IBAction func ChangeUnit(sender: UIButton) {
-        if disPlayInCelcuis{
-            disPlayInCelcuis = false
-            weatherTableView.reloadData()
-            //display the current temperature temp in farenheit
-            if(currWeather != nil){
-                let currentTempInCelcuis = Double(currWeather.temp)
-                self.CurrentTempLbl.text = "\(Int(currentTempInCelcuis! * 1.8 + 32)) °F"
-            }
-            
-        }else{
-            disPlayInCelcuis = true
-            weatherTableView.reloadData()
-            //display the current temperature temp in celcuis
-            if(currWeather != nil) {
-                self.CurrentTempLbl.text = "\(currWeather.temp) °C"
-            }
-        }
+//        if disPlayInCelcuis{
+//            disPlayInCelcuis = false
+//            weatherTableView.reloadData()
+//            //display the current temperature temp in farenheit
+//            if(currWeather != nil){
+//                let currentTempInCelcuis = Double(currWeather.temp)
+//                self.CurrentTempLbl.text = "\(Int(currentTempInCelcuis! * 1.8 + 32)) °F"
+//            }
+//            
+//        }else{
+//            disPlayInCelcuis = true
+//            weatherTableView.reloadData()
+//            //display the current temperature temp in celcuis
+//            if(currWeather != nil) {
+//                self.CurrentTempLbl.text = "\(currWeather.temp) °C"
+//            }
+//        }
     }
     
     
