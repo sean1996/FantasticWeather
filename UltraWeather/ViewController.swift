@@ -168,23 +168,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func ChangeUnit(sender: UIButton) {
-//        if disPlayInCelcuis{
-//            disPlayInCelcuis = false
-//            weatherTableView.reloadData()
-//            //display the current temperature temp in farenheit
-//            if(currWeather != nil){
-//                let currentTempInCelcuis = Double(currWeather.temp)
-//                self.CurrentTempLbl.text = "\(Int(currentTempInCelcuis! * 1.8 + 32)) °F"
-//            }
-//            
-//        }else{
-//            disPlayInCelcuis = true
-//            weatherTableView.reloadData()
-//            //display the current temperature temp in celcuis
-//            if(currWeather != nil) {
-//                self.CurrentTempLbl.text = "\(currWeather.temp) °C"
-//            }
-//        }
+        if disPlayInCelcuis{
+            disPlayInCelcuis = false
+            weatherTableView.reloadData()
+            //display the current temperature temp in farenheit
+            if(currWeather != nil){
+                let currentTempInCelcuis = Double(currWeather.temp)
+                self.CurrentTempLbl.text = "\(Int(currentTempInCelcuis! * 1.8 + 32)) °F"
+            }
+            
+        }else{
+            disPlayInCelcuis = true
+            weatherTableView.reloadData()
+            //display the current temperature temp in celcuis
+            if(currWeather != nil) {
+                self.CurrentTempLbl.text = "\(currWeather.temp) °C"
+            }
+        }
     }
     
     
