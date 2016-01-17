@@ -51,15 +51,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewDidAppear(animated: Bool) {
-//        if (currWeather != nil){
-//            currWeather.downLoadCurrentWeatherInfo(){ () -> () in
-//                //this will be called after download is done
-//                self.updateUI()
-//            }
-//        }
-//        else{
-//             self.locationManager.startUpdatingLocation()
-//        }
+        if (currWeather != nil){
+            currWeather.downLoadCurrentWeatherInfo(){ () -> () in
+                //this will be called after download is done
+                self.updateUI()
+            }
+        }
+        else{
+             self.locationManager.startUpdatingLocation()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
