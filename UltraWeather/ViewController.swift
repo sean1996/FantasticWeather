@@ -156,15 +156,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     @IBAction func refreshButPressed(sender: AnyObject) {
-//        if (currWeather != nil){
-//            currWeather.downLoadCurrentWeatherInfo(){ () -> () in
-//                //this will be called after download is done
-//                self.updateUI()
-//            }
-//        }
-//        else{
-//            self.locationManager.startUpdatingLocation()
-//        }
+        if (currWeather != nil){
+            currWeather.downLoadCurrentWeatherInfo(){ () -> () in
+                //this will be called after download is done
+                self.updateUI()
+            }
+        }
+        else{
+            self.locationManager.startUpdatingLocation()
+        }
     }
     
     @IBAction func ChangeUnit(sender: UIButton) {
