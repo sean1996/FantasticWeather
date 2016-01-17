@@ -91,13 +91,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func updateUI(){
         self.LocationLbl.text = currWeather.location
         self.CurrentWeatherImg.image = UIImage(named: currWeather.weatherIconNumber)
-//        if(disPlayInCelcuis){
-//           self.CurrentTempLbl.text = currWeather.temp + " °C"
-//        }
-//        else{
-//            let currentTempInCelcuis = Double(currWeather.temp)
-//            self.CurrentTempLbl.text = "\(Int(currentTempInCelcuis! * 1.8 + 32)) °F"
-//        }
+        if(disPlayInCelcuis){
+           self.CurrentTempLbl.text = currWeather.temp + " °C"
+        }
+        else{
+            let currentTempInCelcuis = Double(currWeather.temp)
+            self.CurrentTempLbl.text = "\(Int(currentTempInCelcuis! * 1.8 + 32)) °F"
+        }
         self.CurrentHumidLbl.text = currWeather.humid
         self.CurrentWindLbl.text = currWeather.wind
         self.CurrentSunriseLbl.text = currWeather.sunrise
