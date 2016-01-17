@@ -12,7 +12,6 @@
 		122BD87C1C44311C00CED1C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 122BD87A1C44311C00CED1C8 /* Main.storyboard */; };
 		122BD87E1C44311C00CED1C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 122BD87D1C44311C00CED1C8 /* Assets.xcassets */; };
 		122BD8811C44311C00CED1C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 122BD87F1C44311C00CED1C8 /* LaunchScreen.storyboard */; };
-		124E650A1C46E47B00D2AEA3 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124E65091C46E47B00D2AEA3 /* SearchVC.swift */; };
 		124E650C1C46F61400D2AEA3 /* currentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124E650B1C46F61400D2AEA3 /* currentWeather.swift */; };
 		129C75191C46D0C90002382E /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129C75181C46D0C90002382E /* WeatherCell.swift */; };
 		129C751B1C46D2100002382E /* futureWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129C751A1C46D2100002382E /* futureWeather.swift */; };
@@ -29,7 +28,6 @@
 		122BD87D1C44311C00CED1C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		122BD8801C44311C00CED1C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		122BD8821C44311C00CED1C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		124E65091C46E47B00D2AEA3 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		124E650B1C46F61400D2AEA3 /* currentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = currentWeather.swift; sourceTree = "<group>"; };
 		129C75181C46D0C90002382E /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		129C751A1C46D2100002382E /* futureWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = futureWeather.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				122BD8781C44311C00CED1C8 /* ViewController.swift */,
-				124E65091C46E47B00D2AEA3 /* SearchVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -170,6 +167,7 @@
 				TargetAttributes = {
 					122BD8721C44311C00CED1C8 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 5LBX4RV27G;
 					};
 				};
 			};
@@ -258,7 +256,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				122BD8791C44311C00CED1C8 /* ViewController.swift in Sources */,
-				124E650A1C46E47B00D2AEA3 /* SearchVC.swift in Sources */,
 				129C751B1C46D2100002382E /* futureWeather.swift in Sources */,
 				122BD8771C44311C00CED1C8 /* AppDelegate.swift in Sources */,
 				12BA70881C4760BA005FD5A1 /* Constants.swift in Sources */,
@@ -377,10 +374,13 @@
 			baseConfigurationReference = 42FF92ED977E01EB6137AD10 /* Pods-UltraWeather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UltraWeather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SeanWang.UltraWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -389,10 +389,14 @@
 			baseConfigurationReference = 06C9AB5435C53E09C8885B35 /* Pods-UltraWeather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Xinghan Wang (JS284QWPR7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Xinghan Wang (JS284QWPR7)";
 				INFOPLIST_FILE = UltraWeather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SeanWang.UltraWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
