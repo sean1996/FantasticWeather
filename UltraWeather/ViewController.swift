@@ -146,12 +146,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //Three IBActions in the view controller implemented here
     @IBAction func addCityBtnPressed(sender: AnyObject) {
-//        if (currWeather == nil){
-//            currWeather = currentWeather(latitude: 0, longitude: 0, location: "Search your city manuallly")
-//        }
-//        let autocompleteController = GMSAutocompleteViewController()
-//        autocompleteController.delegate = self
-//        self.presentViewController(autocompleteController, animated: true, completion: nil)
+        if (currWeather == nil){
+            currWeather = currentWeather(latitude: 0, longitude: 0, location: "Search your city manuallly")
+        }
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        self.presentViewController(autocompleteController, animated: true, completion: nil)
     }
     
     
