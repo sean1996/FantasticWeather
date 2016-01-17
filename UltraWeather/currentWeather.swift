@@ -88,13 +88,13 @@ class currentWeather: NSObject{
     }
     
     func clearData(){
-//        _weatherIconNumber = ""
-//        _temp = ""
-//        _sunset = ""
-//        _sunrise = ""
-//        _humid = ""
-//        _wind = ""
-//        _sevenDays.removeAll()
+        _weatherIconNumber = ""
+        _temp = ""
+        _sunset = ""
+        _sunrise = ""
+        _humid = ""
+        _wind = ""
+        _sevenDays.removeAll()
     }
     
     func downLoadCurrentWeatherInfo(completed: DownloadComplete){
