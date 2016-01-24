@@ -14,7 +14,11 @@ Don't let bad weather turn you down again - Stay prepared for all weather condit
 
 ##Featured Technologies
 -CoreLocation and CLLocation for location services
+
 -UITableView and customized TableView cells for weather condition displays
+
 -Size class, stack views and auto layouts
+
 -Query and parse JSON data from OpenWeather API using Alamorefire in CocoaPods
+
 -Google's MapView API for querying city names
